@@ -59,7 +59,7 @@ function createServer() {
 
     userList.splice(userToRemove, 1);
 
-    res.status(204).json(userList);
+    res.status(204).send();
   });
 
   server.patch('/users/:id', (req, res) => {
@@ -143,7 +143,7 @@ function createServer() {
     const findUser = userList.find((user) => user.id === Number(userId));
 
     if (!findUser) {
-      res.status(400).send('User not found');
+      res.status(400).send();
     }
 
     const expenseData = {
@@ -164,7 +164,7 @@ function createServer() {
     const { id } = req.params;
 
     const findExpense = expenseList.find(
-      (expense) => expense.userId === Number(id),
+      (expense) => expense.id === Number(id),
     );
 
     if (!findExpense) {
@@ -183,7 +183,7 @@ function createServer() {
     );
 
     if (!foundExpense) {
-      res.status(404).json('No expense found');
+      res.status(404);
     }
 
     foundExpense.title = title;
